@@ -16,11 +16,11 @@ const NotFoundError = require('./errors/not-found-err');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { DATA_BASE } = process.env;
+const { NODE_ENV, DATA_BASE } = process.env;
 
 const { PORT = 3000 } = process.env;
 
-mongoose.connect(`${DATA_BASE}`, {
+mongoose.connect(`${NODE_ENV === 'production' ? DATA_BASE : 'mongodb://localhost:27017/moviesdb'}`, {
   useNewUrlParser: true,
 });
 const app = express();
