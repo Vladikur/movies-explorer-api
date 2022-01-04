@@ -23,7 +23,7 @@ router.post(
       image: Joi.string().required().custom(validatorURL),
       trailer: Joi.string().required().custom(validatorURL),
       thumbnail: Joi.string().required().custom(validatorURL),
-      movieId: Joi.string().hex().length(24).required(),
+      movieId: Joi.number().required(),
       nameRU: Joi.string().required(),
       nameEN: Joi.string().required(),
     }),

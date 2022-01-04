@@ -82,6 +82,8 @@ const patchUser = (req, res, next) => {
     .catch((error) => {
       if (error.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные для изменения данных пользователя'));
+      } else if (error.codeName === 'DuplicateKey') {
+        next(new ConflictError('Пользователь с таким email уже зарегистрирован'));
       } else {
         next(error);
       }
