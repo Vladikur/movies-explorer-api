@@ -8,6 +8,8 @@ const auth = require('../middlewares/auth');
 router.use('/signup', createUser);
 router.use('/signin', login);
 
+router.use('/', auth);
+
 router.use('/users', auth, userRoutes);
 router.use('/movies', auth, moviesRoutes);
 
