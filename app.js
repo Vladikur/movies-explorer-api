@@ -25,8 +25,6 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 
-app.use('/api', apiLimiter);
-
 app.use(helmet());
 
 app.use(cookieParser());
@@ -37,6 +35,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(requestLogger);
+
+app.use(apiLimiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
